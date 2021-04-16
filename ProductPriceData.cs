@@ -8,5 +8,16 @@ namespace KBeautyPriceScraper
         public int ProductNumber { get; set; }
         public string ProductCode { get; set; }
         public DateTime ViewedDateTime { get; set; }
+
+        public override string ToString()
+        {
+            return
+                $"{nameof(ProductPrice)}: {ProductPrice}, " +
+                $"{nameof(ProductNumber)}: {ProductNumber}, " +
+                $"{nameof(ProductCode)}: {ProductCode}, " +
+                $"{nameof(ViewedDateTime)}: {ViewedDateTime}";
+        }
+
+        
     }
 }
