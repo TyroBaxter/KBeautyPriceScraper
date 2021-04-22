@@ -24,8 +24,16 @@ namespace KBeautyPriceScraper
             var parsedData = JObject.Parse(downloadedData);
             var priceData = parsedData.Children()
                                       .First()
+                                      .First()
                                       .ToObject<ItemDetails>();
-            return new ProductPriceData();
+
+            return new ProductPriceData
+            {
+                ProductCode = priceData.item_code,
+                ProductNumber = priceData.product_no,
+                ProductPrice = Convert.ToDecimal(priceData.item_price),
+                ViewedDateTime = DateTime.UtcNow
+            };
         }
     }
 }
