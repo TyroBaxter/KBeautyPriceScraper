@@ -2,7 +2,7 @@
 
 namespace KBeautyPriceScraper
 {
-    internal class ProductPriceData
+    public class ProductPriceData
     {
         public decimal ProductPrice { get; set; }
         public int ProductNumber { get; set; }

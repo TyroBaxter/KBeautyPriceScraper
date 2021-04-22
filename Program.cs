@@ -12,7 +12,8 @@ namespace KBeautyPriceScraper
         {
             var kBeautyUri = new Uri("https://jolse.com/exec/front/shop/CalculatorProduct?product_no=3365&product%5BP0000EZK000A%5D=2");
             var data = GetDataFromUri(kBeautyUri);
-            Console.WriteLine(data);
+            var writer = new WriteDataCsv();
+            writer.WriteData(data);
         }
 
         static ProductPriceData GetDataFromUri(Uri uri)
