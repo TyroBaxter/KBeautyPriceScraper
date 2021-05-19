@@ -21,11 +21,25 @@ namespace KBeautyPriceScraper
             var csvLocation = ConfigurationManager.AppSettings.Get("Key0");
             _csvLocation = csvLocation;
         }
+
+        public static bool DoHeadersExist(string filePath)
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+            return fileInfo.Length > 25;
+        }
+
         public void WriteData(ProductPriceData productPriceData)
         {
-            using var writer = new StreamWriter(_csvLocation);
+            using var writer = new StreamWriter(_csvLocation, append: true);
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            if (!DoHeadersExist(_csvLocation))
+            {
+                csv.WriteHeader<ProductPriceData>();
+                csv.NextRecord();
+            }
+          
             csv.WriteRecord(productPriceData);
+            csv.NextRecord();
         }
     }
 }
